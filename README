@@ -1,0 +1,25 @@
+Prima parte a temei a fost realizarea conexiunii intre client si server.
+Dupa ce conexiunea a fost stabilita putem incepe sa luam comenzi ca si client.
+Se verifica ce comanda a fost introdusa si apoi se realizeaza operatiile specifice.
+
+Pentru "register" se citesc userul si parola, apoi se creaza un obiect JSON care este serializat.
+Se construieste mesajul http cu header-ele necesare si se introduce json-ul ca si payload la final.
+Mesajul este trimis catre server si apoi se asteapta un raspuns.
+Daca a fost un succes, se poate afisa asta ca atare, altfel se afiseaza eroare.
+
+"login" este foarte asemanatoare cu comanda precedenta, dar aici trebuie sa extragem cookie-urile primite si salvate pentru a le trimite ulterior la alte comenzi folosite.
+
+"enter library" necesita ca user-ul sa fie logat, altfel primeste eroare.
+Daca acesta este logat, primeste ca si raspuns in payload token-ul de autentificare care trebuie folosit pentru urmatoarele comenzi intr-un header Authorization
+
+"get books" trimite un request pentru toate cartile care sunt pe server si intoarce lista acestora json, daca exista, sau eroare.
+
+"get book" asemanatoare cu comanda precedenta, doar ca primeste un id al cartii si ofera toate informatiile despre aceasta.
+
+"add book" primeste informatiile despre o carte. In caz de informatiile sunt eronate se afiseaza eroare, altfel se trimite request-ul catre server.
+
+"delete book" se primeste id-ul unei carti si se trimite request DELETE catre server pentru eliminarea cartii. Daca a avut loc cu succes se afiseaza acest lucru, altfel eroare.
+
+"logout" se trimite request-ul de logout catre server si se sterg toate datele despre client salvate local (cookies si cod the autorizatie).
+
+"exit" se inchide conexiunea.
